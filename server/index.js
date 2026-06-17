@@ -57,7 +57,8 @@ app.post("/api/generate", async (req, res) => {
     const model = getModel();
     const prompt = buildPrompt({ jobRole, projectName, technologies, description });
     const result = await model.generateContent(prompt);
-    const text = result.response.text();
+    const response = await result.response;
+    const text = response.text();
 
     const bullets = text
       .split("\n")
